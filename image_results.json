@@ -1,0 +1,347 @@
+[
+  {
+    "filename": "IMG_0176.jpg",
+    "result": {
+      "description": "A fluffy orange-and-white cat sits upright on the armrest of a brown leather sofa, looking toward something off to the side. A person's hand rests on their leg in gray sweatpants nearby, as a cozy living room with a staircase, framed photos, and a red ottoman fills the background.",
+      "keywords": [
+        "cat",
+        "orange",
+        "white",
+        "sofa",
+        "armrest",
+        "living room",
+        "staircase",
+        "photos",
+        "frames",
+        "ottoman",
+        "red",
+        "lamp",
+        "hand",
+        "sweatpants",
+        "yoga mat"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_0192.jpg",
+    "result": {
+      "description": "An orange and white cat lies stretched out on a wooden floor near a beige sofa. It gazes toward the camera with a calm expression in a cozy living room.",
+      "keywords": [
+        "cat",
+        "orange",
+        "white",
+        "tabby",
+        "domestic_shorthair",
+        "lying",
+        "floor",
+        "wooden_floor",
+        "couch",
+        "living_room",
+        "relaxed",
+        "calm",
+        "pet",
+        "gaze",
+        "fur"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_0203.jpg",
+    "result": {
+      "description": "A ginger and white cat stands on a windowsill, gazing out at a leafy view. The indoor scene includes a desk lamp and a window with blinds, creating a cozy home setting.",
+      "keywords": [
+        "cat",
+        "ginger",
+        "orange tabby",
+        "white",
+        "windowsill",
+        "window",
+        "indoors",
+        "house",
+        "home",
+        "lamp",
+        "desk lamp",
+        "view",
+        "trees",
+        "outdoors",
+        "curiosity"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_0244.JPG",
+    "result": {
+      "description": "A cartoon man with a mustache and red cloak reads a large book while floating in space. The pages show Earth-like illustrations as stars twinkle in the dark background, giving a whimsical sci-fi vibe.",
+      "keywords": [
+        "space",
+        "cartoon",
+        "man",
+        "mustache",
+        "cape",
+        "book",
+        "Earth",
+        "URATH",
+        "planet",
+        "stars",
+        "universe",
+        "astronomy",
+        "reading",
+        "illustration",
+        "red cloak"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_0246.jpg",
+    "result": {
+      "description": "An orange tabby cat is curled up and peacefully sleeping on a round patterned cushion. The cushion rests on a dark wooden floor beside a light-colored sofa.",
+      "keywords": [
+        "cat",
+        "ginger",
+        "tabby",
+        "curled",
+        "sleeping",
+        "round",
+        "cushion",
+        "pattern",
+        "dandelion",
+        "motif",
+        "floor",
+        "wood",
+        "sofa",
+        "cozy",
+        "relaxed"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_8734.jpg",
+    "result": {
+      "description": "An alert red-furred squirrel sits on a log, facing the camera with erect ears and a white chest. The scene is shown on a computer monitor with a webcam mounted on top, set against a vivid green, blurred background.",
+      "keywords": [
+        "squirrel",
+        "red-furred",
+        "ears",
+        "log",
+        "green background",
+        "monitor",
+        "webcam",
+        "whiskers",
+        "nature",
+        "wildlife",
+        "close-up",
+        "portrait",
+        "cute",
+        "animal",
+        "furry"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_8810.jpg",
+    "result": {
+      "description": "A desk-side takeout bowl of stir-fried noodles sits beside a laptop and a computer mouse. The dish contains noodles with carrots, onions, peppers and chunks of meat, with a metal spatula resting inside the bowl. A plastic takeout container and crumbs nearby suggest a quick, work-day meal.",
+      "keywords": [
+        "noodles",
+        "stir-fry",
+        "takeout",
+        "desk",
+        "laptop",
+        "mouse",
+        "carrots",
+        "onions",
+        "peppers",
+        "sausage",
+        "meat",
+        "vegetables",
+        "black bowl",
+        "spatula",
+        "messy"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_8821.JPG",
+    "result": {
+      "description": "A close-up of a surprised cat with wide eyes and a slightly open mouth. A small yellow emoji hand appears in the corner, as if reaching toward the cat.",
+      "keywords": [
+        "cat",
+        "surprised",
+        "wideeyed",
+        "mouth",
+        "whiskers",
+        "fur",
+        "tabby",
+        "domestic",
+        "closeup",
+        "emoji",
+        "hand",
+        "meme",
+        "expression",
+        "indoor",
+        "cute"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9123.jpg",
+    "result": {
+      "description": "A white Chevrolet Camaro is pictured in a dimly lit parking lot beside a chain-link fence. It features dark racing stripes on the hood and a sleek, muscular profile with large alloy wheels. The scene includes trees in the background and several pink signs along the fence, with another car visible in the distance.",
+      "keywords": [
+        "car",
+        "camaro",
+        "white",
+        "sports-car",
+        "night",
+        "parking-lot",
+        "chain-link-fence",
+        "racing-stripes",
+        "hood",
+        "wheels",
+        "alloy",
+        "urban",
+        "lighting",
+        "trees",
+        "backdrop"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9152.jpg",
+    "result": {
+      "description": "A red mid-engine sports car is parked in a spacious parking lot. Its low, aerodynamic silhouette is accentuated by distinctive side vents and sleek black wheels.",
+      "keywords": [
+        "Ferrari",
+        "red",
+        "sports car",
+        "mid-engine",
+        "low-profile",
+        "aerodynamic",
+        "side vents",
+        "parked",
+        "parking lot",
+        "black wheels",
+        "classic",
+        "coupe",
+        "exotic",
+        "luxury",
+        "automotive"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9153.jpg",
+    "result": {
+      "description": "A single bone-in steak sits on a white plate at a wooden table in a dimly lit restaurant. The meat is dark and charred with visible grill marks, while a knife and fork rest across the plate. In the background, a name card and another plate hint at a dining setting.",
+      "keywords": [
+        "steak",
+        "bone-in",
+        "grilled",
+        "charred",
+        "restaurant",
+        "dining",
+        "plate",
+        "wooden table",
+        "fork",
+        "knife",
+        "meat",
+        "dinner",
+        "sauce",
+        "rustic",
+        "card"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9308.PNG",
+    "result": {
+      "description": "Patrick Star, the pink cartoon starfish, shows a goofy, half-closed-eye expression with a stretched mouth. He appears to be chewing on a piece of fabric or paper, set against a bright blue underwater background with simple sea shapes.",
+      "keywords": [
+        "Patrick Star",
+        "cartoon",
+        "underwater",
+        "blue background",
+        "goofy expression",
+        "chewing",
+        "mouth",
+        "teeth",
+        "pink",
+        "sea creature",
+        "SpongeBob",
+        "meme",
+        "humor",
+        "face distortion",
+        "funny"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9465.JPG",
+    "result": {
+      "description": "In a takeout container, a large piece of fried chicken sits beside two scoops of mashed potatoes. The chicken is breaded and golden brown, while the potatoes look creamy and soft. Together they form a classic comfort-food meal.",
+      "keywords": [
+        "fried chicken",
+        "crispy coating",
+        "mashed potatoes",
+        "takeout container",
+        "lunch",
+        "brown",
+        "comfort food",
+        "fast food",
+        "crispy texture",
+        "creamy potatoes",
+        "food tray",
+        "savory",
+        "home-style",
+        "meal",
+        "golden"
+      ]
+    }
+  },
+  {
+    "filename": "IMG_9675.PNG",
+    "result": {
+      "description": "Two cute yellow ducklings stand against a pink gradient background. The left one wears a pink bow and teases that it hasn't pooped in 3 days, while the right one sports blue sunglasses and checks a phone, claiming to have pooped 3 times in a day. It's a lighthearted meme about bathroom humor.",
+      "keywords": [
+        "ducklings",
+        "quacks",
+        "meme",
+        "humor",
+        "poop",
+        "bathroom",
+        "pink",
+        "bow",
+        "sunglasses",
+        "phone",
+        "cuteness",
+        "characters",
+        "gradient",
+        "animation",
+        "viral"
+      ]
+    }
+  },
+  {
+    "filename": "magiccarpet.png",
+    "result": {
+      "description": "The image features a colorful magic carpet that displays a vibrant gradient from red to blue, with ends adorned by decorative tassels. The design evokes a whimsical, fantastical feel, typical of fairy tales and adventure stories.",
+      "keywords": [
+        "magic carpet",
+        "colorful",
+        "rainbow",
+        "fantasy",
+        "whimsical",
+        "adventure",
+        "tassels",
+        "gradient",
+        "design",
+        "illustration",
+        "transportation",
+        "flying",
+        "mythical",
+        "art",
+        "creativity"
+      ]
+    }
+  }
+]

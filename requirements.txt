@@ -1,0 +1,6 @@
+fastapi==0.136.1
+numpy==2.4.4
+openai==2.36.0
+Pillow==12.2.0
+python-dotenv==1.2.2
+sentence_transformers==5.4.1

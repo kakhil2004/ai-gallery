@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Search</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #0f0f0f;
+      padding: 20px 24px;
+      border-bottom: 1px solid #222;
+    }
+
+    .header-row {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      position: relative;
+    }
+
+    #search {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      font-size: 16px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #e0e0e0;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    #search:focus { border-color: #555; }
+    #search::placeholder { color: #555; }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+      pointer-events: none;
+    }
+
+    #upload-btn {
+      flex-shrink: 0;
+      padding: 0 16px;
+      height: 44px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #aaa;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: border-color 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    #upload-btn:hover { border-color: #555; color: #e0e0e0; }
+
+    #status {
+      max-width: 600px;
+      margin: 8px auto 0;
+      font-size: 13px;
+      color: #555;
+      min-height: 18px;
+    }
+
+    /* Upload panel */
+    #upload-panel {
+      display: none;
+      max-width: 600px;
+      margin: 16px auto 0;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #drop-zone {
+      padding: 32px;
+      text-align: center;
+      border: 2px dashed #333;
+      border-radius: 10px;
+      margin: 16px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    #drop-zone.drag-over { border-color: #666; background: #222; }
+
+    #drop-zone p { color: #555; font-size: 14px; margin-top: 8px; }
+
+    #file-input { display: none; }
+
+    #preview-area {
+      display: none;
+      padding: 0 16px 16px;
+    }
+
+    #preview-area img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #111;
+    }
+
+    #preview-name {
+      font-size: 12px;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .panel-actions {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 16px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s;
+    }
+
+    .btn:disabled { opacity: 0.4; cursor: default; }
+
+    .btn-primary { background: #2a6eff; color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: #1a5de0; }
+    .btn-secondary { background: #2a2a2a; color: #aaa; }
+    .btn-secondary:hover:not(:disabled) { background: #333; }
+
+    #upload-status {
+      padding: 0 16px 12px;
+      font-size: 13px;
+      color: #aaa;
+      min-height: 18px;
+    }
+
+    /* Grid */
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      padding: 20px 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #222;
+      transition: transform 0.15s, border-color 0.15s;
+      cursor: default;
+    }
+
+    .card:hover { transform: translateY(-2px); border-color: #444; }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: #111;
+    }
+
+    .card-body { padding: 10px 12px; }
+
+    .card-filename { font-size: 12px; color: #666; margin-bottom: 4px; }
+
+    .card-desc {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-score { margin-top: 6px; font-size: 11px; color: #555; }
+
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 60px;
+      color: #555;
+      font-size: 15px;
+    }
+
+    #empty {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+      color: #444;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="search" type="text" placeholder="Search your photos..." autocomplete="off" autofocus />
+      </div>
+      <button id="upload-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        Upload
+      </button>
+    </div>
+
+    <div id="upload-panel">
+      <div id="drop-zone">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <p>Click to choose an image or drag and drop</p>
+        <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.webp" />
+      </div>
+
+      <div id="preview-area">
+        <img id="preview-img" src="" alt="Preview" />
+        <div id="preview-name"></div>
+      </div>
+
+      <div id="upload-status"></div>
+
+      <div class="panel-actions">
+        <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="submit-btn" disabled>Analyze &amp; Add</button>
+      </div>
+    </div>
+
+    <div id="status"></div>
+  </header>
+
+  <div id="loading">Loading...</div>
+  <div id="grid"></div>
+  <div id="empty">No images found for that query.</div>
+
+  <script>
+    const searchEl = document.getElementById('search');
+    const gridEl = document.getElementById('grid');
+    const statusEl = document.getElementById('status');
+    const loadingEl = document.getElementById('loading');
+    const emptyEl = document.getElementById('empty');
+
+    const uploadBtn = document.getElementById('upload-btn');
+    const uploadPanel = document.getElementById('upload-panel');
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const previewArea = document.getElementById('preview-area');
+    const previewImg = document.getElementById('preview-img');
+    const previewName = document.getElementById('preview-name');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const uploadStatus = document.getElementById('upload-status');
+
+    let debounceTimer = null;
+    let currentQuery = null;
+    let selectedFile = null;
+
+    // --- Search ---
+
+    function setLoading(on) {
+      loadingEl.style.display = on ? 'block' : 'none';
+      if (on) { gridEl.innerHTML = ''; emptyEl.style.display = 'none'; }
+    }
+
+    function renderResults(results, query) {
+      gridEl.innerHTML = '';
+      emptyEl.style.display = 'none';
+
+      if (results.length === 0) {
+        emptyEl.style.display = 'block';
+        statusEl.textContent = '';
+        return;
+      }
+
+      const showScore = query.trim().length > 0;
+      statusEl.textContent = query.trim()
+        ? `${results.length} photos — sorted by relevance`
+        : `${results.length} photos`;
+
+      for (const item of results) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const scoreHtml = showScore
+          ? `<div class="card-score">Match: ${(item.score * 100).toFixed(1)}%</div>`
+          : '';
+        card.innerHTML = `
+          <img src="/images/${encodeURIComponent(item.filename)}" alt="${item.filename}" loading="lazy" />
+          <div class="card-body">
+            <div class="card-filename">${item.filename}</div>
+            <div class="card-desc">${item.description}</div>
+            ${scoreHtml}
+          </div>
+        `;
+        gridEl.appendChild(card);
+      }
+    }
+
+    async function fetchResults(query) {
+      if (query === currentQuery) return;
+      currentQuery = query;
+      setLoading(true);
+      try {
+        const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (query !== currentQuery) return;
+        setLoading(false);
+        renderResults(data, query);
+      } catch (err) {
+        setLoading(false);
+        statusEl.textContent = 'Error fetching results.';
+        console.error(err);
+      }
+    }
+
+    searchEl.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => fetchResults(searchEl.value), 300);
+    });
+
+    // --- Upload panel ---
+
+    function openPanel() {
+      uploadPanel.style.display = 'block';
+      resetPanel();
+    }
+
+    function closePanel() {
+      uploadPanel.style.display = 'none';
+      resetPanel();
+    }
+
+    function resetPanel() {
+      selectedFile = null;
+      fileInput.value = '';
+      previewArea.style.display = 'none';
+      previewImg.src = '';
+      previewName.textContent = '';
+      submitBtn.disabled = true;
+      uploadStatus.textContent = '';
+    }
+
+    function setFile(file) {
+      if (!file) return;
+      selectedFile = file;
+      previewName.textContent = file.name;
+      previewImg.src = URL.createObjectURL(file);
+      previewArea.style.display = 'block';
+      submitBtn.disabled = false;
+      uploadStatus.textContent = '';
+    }
+
+    uploadBtn.addEventListener('click', () => {
+      uploadPanel.style.display === 'block' ? closePanel() : openPanel();
+    });
+
+    cancelBtn.addEventListener('click', closePanel);
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', () => setFile(fileInput.files[0]));
+
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('drag-over');
+    });
+
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      setFile(e.dataTransfer.files[0]);
+    });
+
+    submitBtn.addEventListener('click', async () => {
+      if (!selectedFile) return;
+
+      submitBtn.disabled = true;
+      cancelBtn.disabled = true;
+      uploadStatus.textContent = 'Analyzing image with AI — this may take a few seconds...';
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      try {
+        const res = await fetch('/upload', { method: 'POST', body: formData });
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.detail || `HTTP ${res.status}`);
+        }
+        const result = await res.json();
+        uploadStatus.textContent = `Done! "${result.filename}" added.`;
+        currentQuery = null; // force re-fetch
+        setTimeout(() => {
+          closePanel();
+          fetchResults(searchEl.value);
+        }, 1200);
+      } catch (err) {
+        uploadStatus.textContent = `Error: ${err.message}`;
+        submitBtn.disabled = false;
+        cancelBtn.disabled = false;
+      }
+    });
+
+    // Initial load
+    fetchResults('');
+  </script>
+</body>
+</html>
